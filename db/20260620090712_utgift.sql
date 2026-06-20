@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS utgift (
     id INTEGER PRIMARY KEY,
     navn TEXT NOT NULL,
     beløp INTEGER NOT NULL,
+    dato DATE NOT NULL,
     type TEXT,
     beskrivelse TEXT dato DATE NOT NULL,
     gjentagende BOOLEAN NOT NULL DEFAULT TRUE,

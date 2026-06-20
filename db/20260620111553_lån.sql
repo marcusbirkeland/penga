@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS "lån" (
   navn TEXT NOT NULL,
   beløp_start INTEGER NOT NULL,
   rente INTEGER NOT NULL,
-  start_dato DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  startdato DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
   nedbetaling_planlagt_avsluttet_dato DATE
 );
 

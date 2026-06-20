@@ -30,6 +30,22 @@ CREATE TABLE "lån" (
   navn TEXT NOT NULL,
   beløp_start INTEGER NOT NULL,
   rente INTEGER NOT NULL,
-  start_dato DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  startdato DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
   nedbetaling_planlagt_avsluttet_dato DATE
+);
+CREATE TABLE fond (
+  id INTEGER PRIMARY KEY NOT NULL,
+  navn TEXT NOT NULL,
+  beløp_start INTEGER NOT NULL,
+  startdato DATE NOT NULL,
+  forventet_årlig_avkastning_prosent INTEGER NULL,
+  pris_prosent INTEGER NULL,
+  ISIN TEXT NULL
+);
+CREATE TABLE sparekonto (
+  id INTEGER PRIMARY KEY NOT NULL,
+  navn TEXT NOT NULL,
+  beløp_start INTEGER NOT NULL,
+  startdato DATE NOT NULL,
+  rente INTEGER NULL
 );
