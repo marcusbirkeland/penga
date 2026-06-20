@@ -7,9 +7,9 @@ CREATE TABLE
         dato DATE NOT NULL,
         type TEXT,
         beskrivelse TEXT dato DATE NOT NULL,
-        gjentagende BOOLEAN NOT NULL DEFAULT TRUE,
-        gjentagende_dato DATE,
-        gjentagende_årlig BOOLEAN NOT NULL DEFAULT FALSE,
+        fast BOOLEAN NOT NULL DEFAULT TRUE,
+        fast_dato DATE,
+        fast_årlig BOOLEAN NOT NULL DEFAULT FALSE,
         eier_id INTEGER,
         FOREIGN KEY (eier_id) REFERENCES eier (id)
     );

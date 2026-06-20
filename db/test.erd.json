@@ -671,7 +671,7 @@
       "Q5zHmMg2UWHDg1qci16xb": {
         "id": "Q5zHmMg2UWHDg1qci16xb",
         "tableId": "eIV9vY1iTB32ZTyOHEvv9",
-        "name": "gjentagende",
+        "name": "fast",
         "comment": "",
         "dataType": "BOOLEAN",
         "default": "TRUE",
@@ -691,7 +691,7 @@
       "ZxFQTyS_gEyNfx9nP3u0i": {
         "id": "ZxFQTyS_gEyNfx9nP3u0i",
         "tableId": "eIV9vY1iTB32ZTyOHEvv9",
-        "name": "gjentagende_dato",
+        "name": "fast_dato",
         "comment": "",
         "dataType": "DATE",
         "default": "",
@@ -711,7 +711,7 @@
       "kDlJRttj2R_XHdHOvrLEl": {
         "id": "kDlJRttj2R_XHdHOvrLEl",
         "tableId": "eIV9vY1iTB32ZTyOHEvv9",
-        "name": "gjentagende_årlig",
+        "name": "fast_årlig",
         "comment": "",
         "dataType": "BOOLEAN",
         "default": "FALSE",
@@ -871,7 +871,7 @@
       "FACIFFlY_4fh7cB1uU2H_": {
         "id": "FACIFFlY_4fh7cB1uU2H_",
         "tableId": "iywIQ1gZv3zyjC3X0w1a7",
-        "name": "gjentagende",
+        "name": "fast",
         "comment": "",
         "dataType": "BOOLEAN",
         "default": "TRUE",
@@ -891,7 +891,7 @@
       "sk1LempNNFS474gaKDdMh": {
         "id": "sk1LempNNFS474gaKDdMh",
         "tableId": "iywIQ1gZv3zyjC3X0w1a7",
-        "name": "gjentagende_dato",
+        "name": "fast_dato",
         "comment": "",
         "dataType": "DATE",
         "default": "",
@@ -911,7 +911,7 @@
       "2-w67nmFz8ZxyA1ftrBoj": {
         "id": "2-w67nmFz8ZxyA1ftrBoj",
         "tableId": "iywIQ1gZv3zyjC3X0w1a7",
-        "name": "gjentagende_årlig",
+        "name": "fast_årlig",
         "comment": "",
         "dataType": "BOOLEAN",
         "default": "FALSE",
