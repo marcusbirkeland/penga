@@ -23,20 +23,13 @@ func initDb() {
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
-	sql := "CREATE table test (foo INTEGER, bar TEXT)"
-	_, _ = conn.Exec(sql)
-
-	sql = "INSERT INTO test (foo, bar) values (?, ?)"
-	stmt, _ := conn.Prepare(sql)
-	defer stmt.Close()
-	_, _ = stmt.Exec(42, "turso")
-	rows, _ := conn.Query("SELECT * from test")
+	rows, _ := conn.Query("SELECT * from inntekt")
 	defer rows.Close()
 	for rows.Next() {
 		var a int
 		var b string
 		_ = rows.Scan(&a, &b)
-		fmt.Printf("%d, %s\n", a, b) // 42, turso
+		fmt.Printf("%d, %s\n", a, b)
 	}
 }
 
