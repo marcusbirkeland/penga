@@ -38,5 +38,5 @@ description = "Down all migrations"
 run = 'mise migrate-reset && mise migrate'
 description = "Reset migrations, then apply all."
 
-[tasks.gen-schema]
+[tasks.schema]
 run = 'sqlite3 ./db/sqlite.db .schema > ./db/schema/schema.sql'
