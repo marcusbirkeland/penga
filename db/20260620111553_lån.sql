@@ -1,0 +1,12 @@
+-- +goose Up
+CREATE TABLE IF NOT EXISTS "lån" (
+  id INTEGER PRIMARY KEY,
+  navn TEXT NOT NULL,
+  beløp_start INTEGER NOT NULL,
+  rente INTEGER NOT NULL,
+  start_dato DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  nedbetaling_planlagt_avsluttet_dato DATE
+);
+
+-- +goose Down
+DROP TABLE IF EXISTS "lån";

@@ -1,12 +1,13 @@
 -- +goose Up
 CREATE TABLE IF NOT EXISTS utgift (
     id INTEGER PRIMARY KEY,
+    navn TEXT NOT NULL,
     beløp INTEGER NOT NULL,
-    dato DATE NOT NULL,
-    gjentagende BOOLEAN NOT NULL DEFAULT TRUE,
-    gjentagendeDato DATE,
     type TEXT,
-    beskrivelse TEXT
+    beskrivelse TEXT dato DATE NOT NULL,
+    gjentagende BOOLEAN NOT NULL DEFAULT TRUE,
+    gjentagende_dato DATE,
+    gjentagende_årlig BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 -- +goose Down
