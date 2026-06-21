@@ -30,7 +30,8 @@ func main() {
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		OnStartup: app.startup,
+		BackgroundColour: options.NewRGB(27, 38, 54),
+		OnStartup:        app.startup,
 		Bind: []interface{}{
 			app,
 		},

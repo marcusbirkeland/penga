@@ -48,7 +48,7 @@
 
 <style>
   main {
-    background-color: #282c34;
+    background-color: rgba(27, 38, 54, 1);
   }
 
   .container {
