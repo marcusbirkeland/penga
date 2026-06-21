@@ -24,3 +24,5 @@ node_modules
 .idea
 wailsjs
 build
+
+.router 

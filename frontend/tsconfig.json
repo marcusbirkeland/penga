@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "target": "ESNext",
     "module": "ESNext",
     /**
@@ -11,10 +11,12 @@
     "importsNotUsedAsValues": "error",
     "paths": {
       "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"]
+      "$lib/*": ["./src/lib/*"],
+      "sv-router/generated": ["./.router/generated"]
     },
     "isolatedModules": true,
     "resolveJsonModule": true,
+    "extends": ["./.router/tsconfig.json"],
     /**
      * To have warnings / errors of the Svelte compiler at the
      * correct position, enable source maps by default.

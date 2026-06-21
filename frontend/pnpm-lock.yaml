@@ -8,9 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@lucide/svelte':
+        specifier: ^1.21.0
+        version: 1.21.0(svelte@5.56.3)
       '@tailwindcss/vite':
         specifier: ^4.3.1
         version: 4.3.1(vite@8.0.16(jiti@2.7.0))
+      sv-router:
+        specifier: ^0.17.0
+        version: 0.17.0(svelte@5.56.3)
       tailwindcss:
         specifier: ^4.3.1
         version: 4.3.1
@@ -99,6 +105,11 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@lucide/svelte@1.21.0':
+    resolution: {integrity: sha512-MEv//A7Jv3kHukZowv/DWp1MAtUzJKYwtJsmnQ7X98lCgtac3z3NbaToDl3Q6jO3gS9sougFpcD+t+YuxOkRMw==}
+    peerDependencies:
+      svelte: ^5
 
   '@napi-rs/wasm-runtime@1.1.5':
     resolution: {integrity: sha512-AWPoBRJ9tsnVhor4sjO7rkni+7p+2IAEFj6cx06UgP10jkQHqay/36uRV/bFkgrh18D9vb4cr8Q0Pthskgzy+Q==}
@@ -549,6 +560,12 @@ packages:
   style-to-object@1.0.14:
     resolution: {integrity: sha512-LIN7rULI0jBscWQYaSswptyderlarFkjQ+t79nzty8tcIAceVomEVlLzH5VP4Cmsv6MtKhs7qaAiwlcp+Mgaxw==}
 
+  sv-router@0.17.0:
+    resolution: {integrity: sha512-vny+g+yVhb2fUi9+hD3JwrzCM45iXXK3BAYwxRr0Uqw1gGcPXuUjkpeoisdZt9/D/lwiJ6UaKSGhKMeIy5a1QA==}
+    hasBin: true
+    peerDependencies:
+      svelte: ^5
+
   svelte-toolbelt@0.10.6:
     resolution: {integrity: sha512-YWuX+RE+CnWYx09yseAe4ZVMM7e7GRFZM6OYWpBKOb++s+SQ8RBIMMe+Bs/CznBMc0QPLjr+vDBxTAkozXsFXQ==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
@@ -701,6 +718,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@lucide/svelte@1.21.0(svelte@5.56.3)':
+    dependencies:
+      svelte: 5.56.3
 
   '@napi-rs/wasm-runtime@1.1.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
     dependencies:
@@ -1033,6 +1054,11 @@ snapshots:
   style-to-object@1.0.14:
     dependencies:
       inline-style-parser: 0.2.7
+
+  sv-router@0.17.0(svelte@5.56.3):
+    dependencies:
+      esm-env: 1.2.2
+      svelte: 5.56.3
 
   svelte-toolbelt@0.10.6(svelte@5.56.3):
     dependencies:
