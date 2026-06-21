@@ -10,6 +10,15 @@ import (
 	"gorm.io/gorm"
 )
 
+type LånInput struct {
+	Navn                             string
+	BeløpStart                       int
+	Rente                            int
+	Startdato                        time.Time
+	NedbetalingPlanlagtAvsluttetDato *time.Time
+	OwnerID                          *int
+}
+
 func GetLån() ([]Lån, error) {
 	ctx := context.Background()
 
@@ -28,23 +37,23 @@ func GetLånByEier(eierID int) ([]Lån, error) {
 	return gorm.G[Lån](DB).Preload("Eier", nil).Preload("Nedbetalinger", nil).Where("owner_id = ?", eierID).Find(ctx)
 }
 
-func CreateLån(navn string, belopStart int, rente int, startdato time.Time, nedbetalingPlanlagtAvsluttetDato *time.Time, ownerID *int) (int, error) {
+func CreateLån(input *LånInput) (int, error) {
 	ctx := context.Background()
 
 	lan := Lån{
-		Navn:                             navn,
-		BeløpStart:                       belopStart,
-		Rente:                            rente,
-		Startdato:                        startdato,
-		NedbetalingPlanlagtAvsluttetDato: nedbetalingPlanlagtAvsluttetDato,
-		OwnerId:                          ownerID,
+		Navn:                             input.Navn,
+		BeløpStart:                       input.BeløpStart,
+		Rente:                            input.Rente,
+		Startdato:                        input.Startdato,
+		NedbetalingPlanlagtAvsluttetDato: input.NedbetalingPlanlagtAvsluttetDato,
+		OwnerId:                          input.OwnerID,
 	}
 
 	err := gorm.G[Lån](DB).Create(ctx, &lan)
 	return lan.ID, err
 }
 
-func UpdateLån(id int, navn string, belopStart int, rente int, startdato time.Time, nedbetalingPlanlagtAvsluttetDato *time.Time, ownerID *int) error {
+func UpdateLån(id int, input *LånInput) error {
 	ctx := context.Background()
 
 	lan, err := gorm.G[Lån](DB).Where("id = ?", id).First(ctx)
@@ -52,12 +61,12 @@ func UpdateLån(id int, navn string, belopStart int, rente int, startdato time.T
 		return err
 	}
 
-	lan.Navn = navn
-	lan.BeløpStart = belopStart
-	lan.Rente = rente
-	lan.Startdato = startdato
-	lan.NedbetalingPlanlagtAvsluttetDato = nedbetalingPlanlagtAvsluttetDato
-	lan.OwnerId = ownerID
+	lan.Navn = input.Navn
+	lan.BeløpStart = input.BeløpStart
+	lan.Rente = input.Rente
+	lan.Startdato = input.Startdato
+	lan.NedbetalingPlanlagtAvsluttetDato = input.NedbetalingPlanlagtAvsluttetDato
+	lan.OwnerId = input.OwnerID
 
 	_, err = gorm.G[Lån](DB).Where("id = ?", id).Updates(ctx, lan)
 	return err

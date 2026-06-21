@@ -10,6 +10,18 @@ import (
 	"gorm.io/gorm"
 )
 
+type UtgiftInput struct {
+	Navn        string
+	Beløp       int
+	Dato        time.Time
+	Type        *string
+	Beskrivelse string
+	Fast        bool
+	FastDato    *time.Time
+	FastÅrlig   bool
+	OwnerID     *int
+}
+
 func GetUtgifter() ([]Utgift, error) {
 	ctx := context.Background()
 
@@ -28,26 +40,26 @@ func GetUtgifterByEier(eierID int) ([]Utgift, error) {
 	return gorm.G[Utgift](DB).Preload("Eier", nil).Preload("FondSparing", nil).Preload("KontoSparing", nil).Preload("LånNedbetaling", nil).Where("owner_id = ?", eierID).Find(ctx)
 }
 
-func CreateUtgift(navn string, belop int, dato time.Time, type_ *string, beskrivelse string, fast bool, fastDato *time.Time, fastArlig bool, ownerID *int) (int, error) {
+func CreateUtgift(input *UtgiftInput) (int, error) {
 	ctx := context.Background()
 
 	utgift := Utgift{
-		Navn:        navn,
-		Beløp:       belop,
-		Dato:        dato,
-		Type:        type_,
-		Beskrivelse: beskrivelse,
-		Fast:        fast,
-		FastDato:    fastDato,
-		FastÅrlig:   fastArlig,
-		OwnerId:     ownerID,
+		Navn:        input.Navn,
+		Beløp:       input.Beløp,
+		Dato:        input.Dato,
+		Type:        input.Type,
+		Beskrivelse: input.Beskrivelse,
+		Fast:        input.Fast,
+		FastDato:    input.FastDato,
+		FastÅrlig:   input.FastÅrlig,
+		OwnerId:     input.OwnerID,
 	}
 
 	err := gorm.G[Utgift](DB).Create(ctx, &utgift)
 	return utgift.ID, err
 }
 
-func UpdateUtgift(id int, navn string, belop int, dato time.Time, type_ *string, beskrivelse string, fast bool, fastDato *time.Time, fastArlig bool, ownerID *int) error {
+func UpdateUtgift(id int, input *UtgiftInput) error {
 	ctx := context.Background()
 
 	utgift, err := gorm.G[Utgift](DB).Where("id = ?", id).First(ctx)
@@ -55,15 +67,15 @@ func UpdateUtgift(id int, navn string, belop int, dato time.Time, type_ *string,
 		return err
 	}
 
-	utgift.Navn = navn
-	utgift.Beløp = belop
-	utgift.Dato = dato
-	utgift.Type = type_
-	utgift.Beskrivelse = beskrivelse
-	utgift.Fast = fast
-	utgift.FastDato = fastDato
-	utgift.FastÅrlig = fastArlig
-	utgift.OwnerId = ownerID
+	utgift.Navn = input.Navn
+	utgift.Beløp = input.Beløp
+	utgift.Dato = input.Dato
+	utgift.Type = input.Type
+	utgift.Beskrivelse = input.Beskrivelse
+	utgift.Fast = input.Fast
+	utgift.FastDato = input.FastDato
+	utgift.FastÅrlig = input.FastÅrlig
+	utgift.OwnerId = input.OwnerID
 
 	_, err = gorm.G[Utgift](DB).Where("id = ?", id).Updates(ctx, utgift)
 	return err

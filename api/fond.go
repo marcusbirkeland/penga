@@ -11,6 +11,16 @@ import (
 	"gorm.io/gorm/clause"
 )
 
+type FondInput struct {
+	Navn                            string
+	BeløpStart                      int
+	Startdato                       time.Time
+	ForventetÅrligAvkastningProsent *int
+	PrisProsent                     *int
+	ISIN                            *string
+	OwnerID                         *int
+}
+
 func GetAllFond() ([]Fond, error) {
 	ctx := context.Background()
 
@@ -29,24 +39,24 @@ func GetAllFondByEier(eierID int) ([]Fond, error) {
 	return gorm.G[Fond](DB).Preload("Eier", nil).Preload("Sparing", nil).Where("owner_id = ?", eierID).Find(ctx)
 }
 
-func CreateFond(navn string, belopStart int, startdato time.Time, forventetArligAvkastningProsent *int, prisProsent *int, isin *string, ownerID *int) (int, error) {
+func CreateFond(input *FondInput) (int, error) {
 	ctx := context.Background()
 
 	fond := Fond{
-		Navn:                            navn,
-		BeløpStart:                      belopStart,
-		Startdato:                       startdato,
-		ForventetÅrligAvkastningProsent: forventetArligAvkastningProsent,
-		PrisProsent:                     prisProsent,
-		ISIN:                            isin,
-		OwnerId:                         ownerID,
+		Navn:                            input.Navn,
+		BeløpStart:                      input.BeløpStart,
+		Startdato:                       input.Startdato,
+		ForventetÅrligAvkastningProsent: input.ForventetÅrligAvkastningProsent,
+		PrisProsent:                     input.PrisProsent,
+		ISIN:                            input.ISIN,
+		OwnerId:                         input.OwnerID,
 	}
 
 	err := gorm.G[Fond](DB).Create(ctx, &fond)
 	return fond.ID, err
 }
 
-func UpdateFond(id int, navn string, belopStart int, startdato time.Time, forventetArligAvkastningProsent *int, prisProsent *int, isin *string, ownerID *int) error {
+func UpdateFond(id int, input *FondInput) error {
 	ctx := context.Background()
 
 	fond, err := gorm.G[Fond](DB).Where("id = ?", id).First(ctx)
@@ -54,13 +64,13 @@ func UpdateFond(id int, navn string, belopStart int, startdato time.Time, forven
 		return err
 	}
 
-	fond.Navn = navn
-	fond.BeløpStart = belopStart
-	fond.Startdato = startdato
-	fond.ForventetÅrligAvkastningProsent = forventetArligAvkastningProsent
-	fond.PrisProsent = prisProsent
-	fond.ISIN = isin
-	fond.OwnerId = ownerID
+	fond.Navn = input.Navn
+	fond.BeløpStart = input.BeløpStart
+	fond.Startdato = input.Startdato
+	fond.ForventetÅrligAvkastningProsent = input.ForventetÅrligAvkastningProsent
+	fond.PrisProsent = input.PrisProsent
+	fond.ISIN = input.ISIN
+	fond.OwnerId = input.OwnerID
 
 	_, err = gorm.G[Fond](DB).Where("id = ?", id).Updates(ctx, fond)
 	return err
