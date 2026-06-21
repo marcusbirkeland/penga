@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"penga/api"
+	"penga/db/models"
 )
 
 // App struct
@@ -24,4 +26,12 @@ func (a *App) startup(ctx context.Context) {
 // Greet returns a greeting for the given name
 func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show timeeeee!", name)
+}
+
+func (a *App) GetEiere() ([]models.Eier, error) {
+	return api.GetEiere()
+}
+
+func (a *App) CreateEier(navn string) (int, error) {
+	return api.CreateEier(navn)
 }

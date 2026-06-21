@@ -3,7 +3,6 @@ node = '24'
 pnpm = '11'
 go = '1.26.4'
 "go:github.com/wailsapp/wails/v2/cmd/wails" = "v2.12.0"
-"go:github.com/pressly/goose/v3/cmd/goose" = "v3.27.1"
 
 [env]
 NODE_ENV = 'development'
@@ -12,31 +11,10 @@ NODE_ENV = 'development'
 run = 'wails dev'
 
 [tasks.init]
-run = 'mkdir -p ./db && test -f ./db/sqlite.db || touch ./db/sqlite.db && mise run migrate'
-run_windows = 'powershell  -Command "if (-not (Test-Path db)) { New-Item -ItemType Directory -Path db -Force | Out-Null }; if (-not (Test-Path db/sqlite.db)) { New-Item -ItemType File -Path db/sqlite.db -Force | Out-Null }"; mise run migrate'
-
-[tasks.makemigration]
-usage = '''
-  arg "<name>" help="Migration name" 
-'''
-run = '''
-goose -dir ./db create ${usage_name?} sql
-'''
-run_windows = 'goose -dir .\\db create %usage_name% sql'
-
-[tasks.migrate]
-run = 'goose -dir ./db sqlite3 ./db/sqlite.db up'
-run_windows = 'goose -dir .\\db sqlite3 .\\db\\sqlite.db up'
-description = "Apply all migrations."
-
-[tasks.migrate-reset]
-run = 'goose -dir ./db sqlite3 ./db/sqlite.db reset'
-run_windows = 'goose -dir .\\db sqlite3 .\\db\\sqlite.db reset'
-description = "Down all migrations"
-
-[tasks.migrate-reapply]
-run = 'mise migrate-reset && mise migrate'
-description = "Reset migrations, then apply all."
+run = 'mkdir -p ./db && test -f ./db/sqlite.db || touch ./db/sqlite.db'
+run_windows = 'powershell  -Command "if (-not (Test-Path db)) { New-Item -ItemType Directory -Path db -Force | Out-Null }; if (-not (Test-Path db/sqlite.db)) { New-Item -ItemType File -Path db/sqlite.db -Force | Out-Null }"'
+description = "Create db directory and sqlite.db if they don't exist."
 
 [tasks.schema]
 run = 'sqlite3 ./db/sqlite.db .schema > ./db/schema/schema.sql'
+description = "Export current database schema to schema.sql."

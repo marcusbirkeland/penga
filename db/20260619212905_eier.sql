@@ -1,6 +1,0 @@
--- +goose Up
-CREATE TABLE
-  IF NOT EXISTS eier (id INTEGER PRIMARY KEY, navn TEXT NOT NULL);
-
--- +goose Down
-DROP TABLE IF EXISTS eier;

@@ -1,18 +1,38 @@
 <script lang="ts">
   import logo from "./assets/images/logo-universal.png";
-  import { Greet } from "../wailsjs/go/main/App.js";
+  import { CreateEier, GetEiere } from "../wailsjs/go/main/App.js";
+  import { models } from "../wailsjs/go/models";
 
   let resultText = $state("Please enter your name below 👇");
   let name = $state("World");
+  let eiere: models.Eier[] = $state([]);
 
-  function greet() {
-    Greet(name).then((result) => (resultText = result));
-  }
+  const fetchEiere = () => {
+    GetEiere().then((result) => {
+      console.log(result);
+      eiere = result;
+    });
+  };
+
+  const createEier = () => {
+    CreateEier(name).then((result) => {
+      console.log(result);
+      resultText = result.toString();
+      fetchEiere();
+    });
+  };
+
+  fetchEiere();
 </script>
 
 <main>
   <div class="container">
     <div class="result" id="result">{resultText}</div>
+    {#if eiere.length > 0}
+      <div class="result" id="eiere">
+        Eier: {eiere.map((eier) => eier.navn).join(", ")}
+      </div>
+    {/if}
     <div class="input-box" id="input">
       <input
         autocomplete="off"
@@ -21,7 +41,7 @@
         id="name"
         type="text"
       />
-      <button class="btn" onclick={greet}>Greet</button>
+      <button class="btn" onclick={createEier}>Greet</button>
     </div>
   </div>
 </main>

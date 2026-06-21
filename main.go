@@ -4,38 +4,21 @@ import (
 	"embed"
 	"fmt"
 	"os"
-
-	"database/sql"
+	"penga/db"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
-
-	_ "github.com/mattn/go-sqlite3"
 )
 
 //go:embed all:frontend/dist
 var assets embed.FS
 
-func initDb() {
-	conn, err := sql.Open("sqlite3", "./db/sqlite.db")
-	if err != nil {
-		fmt.Printf("Error: %v\n", err)
+func main() {
+	if err := db.InitDB(); err != nil {
+		fmt.Printf("Failed to initialize database: %v\n", err)
 		os.Exit(1)
 	}
-	rows, _ := conn.Query("SELECT * from inntekt")
-	defer rows.Close()
-	for rows.Next() {
-		var a int
-		var b string
-		_ = rows.Scan(&a, &b)
-		fmt.Printf("%d, %s\n", a, b)
-	}
-}
-
-func main() {
-
-	initDb()
 	// Create an instance of the app structure
 	app := NewApp()
 
