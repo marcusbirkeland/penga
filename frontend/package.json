@@ -27,6 +27,8 @@
   "dependencies": {
     "@lucide/svelte": "^1.21.0",
     "@tailwindcss/vite": "^4.3.1",
+    "@tanstack/svelte-table": "^8.21.3",
+    "@tanstack/table-core": "^8.21.3",
     "sv-router": "^0.17.0",
     "tailwindcss": "^4.3.1"
   }
