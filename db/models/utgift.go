@@ -9,7 +9,7 @@ type Utgift struct {
 	Dato           time.Time        `gorm:"not null" json:"dato"`
 	Type           *string          `json:"type"`
 	Beskrivelse    string           `json:"beskrivelse"`
-	Fast           bool             `gorm:"not null;default:true" json:"fast"`
+	Fast           bool             `gorm:"not null" json:"fast"`
 	FastDato       *time.Time       `json:"fast_dato"`
 	FastÅrlig      bool             `gorm:"not null;default:false;column:fast_arlig" json:"fast_årlig"`
 	OwnerId        *int             `gorm:"index" json:"eier_id"`

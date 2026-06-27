@@ -54,7 +54,8 @@
         Type: type || undefined,
         Beskrivelse: beskrivelse,
         Fast: fast,
-        FastDato: fast && fastDato ? new Date(fastDato).toISOString() : undefined,
+        FastDato:
+          fast && fastDato ? new Date(fastDato).toISOString() : undefined,
         FastÅrlig: fastÅrlig,
         OwnerID: eierId || undefined,
       });
@@ -143,7 +144,7 @@
                       class="peer h-4 w-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
                     />
                     <Field.Label for="utgift-fast" class="font-normal"
-                      >Gjentakende</Field.Label
+                      >Fast</Field.Label
                     >
                   </Field.Field>
 
