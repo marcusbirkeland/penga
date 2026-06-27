@@ -1,10 +1,17 @@
-<script>
+<script lang="ts" module>
+	export type Side = "top" | "right" | "bottom" | "left";
+</script>
+
+<script lang="ts">
 	import { Dialog as SheetPrimitive } from "bits-ui";
+	import type { Snippet } from "svelte";
 	import SheetPortal from "./sheet-portal.svelte";
 	import SheetOverlay from "./sheet-overlay.svelte";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import RiCloseLine from 'remixicon-svelte/icons/close-line';
-	import { cn } from "$lib/utils.js";
+	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import type { ComponentProps } from "svelte";
+
 	let {
 		ref = $bindable(null),
 		class: className,
@@ -13,6 +20,11 @@
 		portalProps,
 		children,
 		...restProps
+	}: WithoutChildrenOrChild<SheetPrimitive.ContentProps> & {
+		portalProps?: WithoutChildrenOrChild<ComponentProps<typeof SheetPortal>>;
+		side?: Side;
+		showCloseButton?: boolean;
+		children: Snippet;
 	} = $props();
 </script>
 

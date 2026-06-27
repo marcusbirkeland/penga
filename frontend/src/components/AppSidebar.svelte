@@ -26,7 +26,7 @@
           {#each items as item (item.title)}
             <Sidebar.MenuItem>
               <Sidebar.MenuButton>
-                {#snippet child({ props })}
+                {#snippet child({ props }: { props: Record<string, unknown> })}
                   <a href={item.url} {...props}>
                     <item.icon />
                     <span>{item.title}</span>

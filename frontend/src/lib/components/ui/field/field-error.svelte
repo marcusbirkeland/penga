@@ -1,11 +1,17 @@
-<script>
-	import { cn } from "$lib/utils.js";
+<script lang="ts">
+	import { cn, type WithElementRef } from "$lib/utils.js";
+	import type { HTMLAttributes } from "svelte/elements";
+	import type { Snippet } from "svelte";
+
 	let {
 		ref = $bindable(null),
 		class: className,
 		children,
 		errors,
 		...restProps
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
+		children?: Snippet;
+		errors?: { message?: string }[];
 	} = $props();
 
 	const hasContent = $derived.by(() => {
