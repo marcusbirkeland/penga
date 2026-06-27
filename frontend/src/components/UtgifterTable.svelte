@@ -277,10 +277,10 @@
                           <button
                             type="button"
                             onclick={header.column.getToggleSortingHandler()}
-                            class="inline-flex items-center gap-1 select-none hover:text-foreground {header.column.id ===
+                            class="flex w-full items-center gap-1 select-none hover:text-foreground {header.column.id ===
                             'beløp'
-                              ? 'ml-auto'
-                              : ''}"
+                              ? 'flex-row-reverse'
+                              : 'justify-start'}"
                           >
                             {header.column.columnDef.header as string}
                             {#if header.column.getIsSorted() === "asc"}
@@ -317,8 +317,8 @@
                         class={cell.column.id === "beløp"
                           ? "text-end font-medium tabular-nums"
                           : cell.column.id === "actions"
-                            ? "w-15"
-                            : ""}
+                            ? "w-15 text-left"
+                            : "text-left"}
                       >
                         {#if cell.column.id === "actions"}
                           <button
