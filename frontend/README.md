@@ -1,63 +1,54 @@
-# Svelte + Vite
+# vue-project
 
-This template should help get you started developing with Svelte in Vite.
+This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
 
-[VS Code](https://code.visualstudio.com/)
+[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-+ [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+## Recommended Browser Setup
 
-## Need an official Svelte framework?
+- Chromium-based browsers (Chrome, Edge, Brave, etc.):
+  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
+- Firefox:
+  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
+  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its
-serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less,
-and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+## Type Support for `.vue` Imports in TS
 
-## Technical considerations
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-**Why use this over SvelteKit?**
+## Customize configuration
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
-  `vite dev` and `vite build` wouldn't work in a SvelteKit environment, for example.
+See [Vite Configuration Reference](https://vite.dev/config/).
 
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer
-experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite`
-templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+## Project Setup
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been
-structured similarly to SvelteKit so that it is easy to migrate.
+```sh
+pnpm install
+```
 
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
+### Compile and Hot-Reload for Development
 
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash
-references keeps the default TypeScript setting of accepting type information from the entire workspace, while also
-adding `svelte` and `vite/client` type information.
+```sh
+pnpm dev
+```
 
-**Why include `.vscode/extensions.json`?**
+### Type-Check, Compile and Minify for Production
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to
-install the recommended extension upon opening the project.
+```sh
+pnpm build
+```
 
-**Why enable `checkJs` in the JS template?**
+### Run Unit Tests with [Vitest](https://vitest.dev/)
 
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate.
-This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of
-JavaScript, it is trivial to change the configuration.
+```sh
+pnpm test:unit
+```
 
-**Why is HMR not preserving my local component state?**
+### Lint with [ESLint](https://eslint.org/)
 
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr`
-and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the
-details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be
-replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+```sh
+pnpm lint
 ```
